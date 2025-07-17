@@ -1,0 +1,205 @@
+/* General Page Styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: floralwhite;
+  color: darkslategray;
+}
+
+/* Header Styling */
+header {
+  background-color: darkred;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Navigation Bar */
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: brown;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  display: block;
+  padding: 14px 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: maroon;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transform: rotate(-1deg);
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  text-align: center;
+}
+
+.hero-text {
+  background-color: rgba(166, 155, 155, 0.614); 
+  padding: 3rem;
+  border-radius: 1rem;
+  display: inline-block;
+  max-width: 37.5rem;
+}
+
+.hero-text h2 {
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Main Section */
+main {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+/* Buttons */
+button {
+  background-color: darkred;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: maroon;
+  transform: scale(1.05);
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  margin-top: 1.875rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+/* Combined Flavours Page Section */
+.menu-gallery-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5625rem;
+  padding: 1.25rem 0;
+}
+
+.menu-card {
+  background-color: #fff5ee;
+  border: 2px solid #cd853f;
+  border-radius: 0.9375rem;
+  width: 13.75rem;
+  text-align: center;
+  padding: 0.9375rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card img {
+  width: 100%;
+  height: 9.375rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}
+
+.menu-card h3 {
+  color: #8b0000;
+  margin: 0.625rem 0 0.3125rem;
+}
+
+.menu-card p {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.menu-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    height: 40rem;
+    padding: 1rem;
+  }
+
+  .hero-text {
+    padding: 1.5rem;
+  }
+
+  .hero-text h2 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+  }
+
+  .navbar a {
+    text-align: center;
+  }
+
+  .menu-gallery-section,
+  .gallery img {
+    width: 90%;
+  }
+}
+
+/* Simple Contact Form Styling */
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  margin-top: 10px;
+}
