@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 20px;
+      text-align: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h2 {
+      color: white;
+      margin-bottom: 15px;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    #taskInput {
+      padding: 10px;
+      width: 60%;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    .add-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    .filter-btn {
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    #taskList {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #fff;
+      margin: 10px auto;
+      padding: 12px;
+      border-radius: 10px;
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    li:hover {
+      transform: translateY(-3px);
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .actions button {
+      margin-left: 6px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .edit-btn {
+      background: #ffc107;
+      color: white;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h2> To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Enter a task...">
+  <button class="add-btn" onclick="addTask()">Add Task</button>
+  
+  <div>
+    <button class="filter-btn" onclick="filterTasks('all')">All</button>
+    <button class="filter-btn" onclick="filterTasks('pending')">Pending</button>
+    <button class="filter-btn" onclick="filterTasks('completed')">Completed</button>
+  </div>
+
+  <ul id="taskList"></ul>
+
+  <script>
+    let tasks = [];
+
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let taskText = input.value.trim();
+      if (taskText === "") return alert("Please enter a task!");
+
+    
+      tasks.push({ text: taskText, completed: false });
+      input.value = "";
+      displayTasks();
+    }
+
+    function toggleTask(index) {
+      tasks[index].completed = !tasks[index].completed;
+      displayTasks();
+    }
+
+    function editTask(index) {
+      let newText = prompt("Edit task:", tasks[index].text);
+      if (newText !== null && newText.trim() !== "") {
+        tasks[index].text = newText.trim();
+        displayTasks();
+      }
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      displayTasks();
+    }
+
+    function filterTasks(type) {
+      displayTasks(type);
+    }
+
+    function displayTasks(filter = "all") {
+      let list = document.getElementById("taskList");
+      list.innerHTML = "";
+
+      tasks.forEach((task, index) => {
+        if (filter === "completed" && !task.completed) return;
+        if (filter === "pending" && task.completed) return;
+
+        let li = document.createElement("li");
+
+        let span = document.createElement("span");
+        span.innerText = task.text;
+        span.className = task.completed ? "completed" : "";
+        span.onclick = () => toggleTask(index);
+
+        let actions = document.createElement("div");
+        actions.className = "actions";
+
+        let editBtn = document.createElement("button");
+        editBtn.innerText = " Edit";
+        editBtn.className = "edit-btn";
+        editBtn.onclick = () => editTask(index);
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.innerText = " Delete";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.onclick = () => deleteTask(index);
+
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+
+        li.appendChild(span);
+        li.appendChild(actions);
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
