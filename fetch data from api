@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Button styling */
+        body{
+
+            padding:0;
+            margin:0;
+            background-color: rgb(62, 1, 62);
+        }
+        span{
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+        }
+        p{
+            height:8px;
+            color:rgb(235, 247, 104);
+            font-weight: bold;
+        }
+        #btn1 {
+            background-color: #e95fd4;
+            color: white;
+            padding: 10px 18px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: 0.3s;
+            
+        }
+
+        #btn1:hover {
+            background-color: #ff04c0;
+        }
+
+        /* Table styling */
+       
+       /* Table styling */
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+th, td {
+    border: 1px solid #999;
+    text-align: left;
+    padding: 8px 12px;
+}
+
+th {
+   background-color: #dcdcdc;
+   font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;  /* lighter gray */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;  /* pure white */
+}
+
+tr:hover {
+    background-color: #ffe6ff;  /* light pink highlight */
+}
+
+    </style>
+</head>
+<body>
+    
+    <span>
+        <p>Fetch Your Data from API !</p>
+    <button id="btn1">
+        Get Data
+    </button>
+    </span>
+    <table id="table"></table>
+</body>
+<script>
+    document.getElementById("btn1").addEventListener("click",async ()=>{
+
+    try{
+        let response = await fetch("https://jsonplaceholder.typicode.com/todos");
+        let arr = await response.json();//return promise object
+
+            console.log(arr);
+
+            // take keys from first object in arr
+            let x=Object.keys(arr[0]);  
+
+            let table=document.createElement("table");
+            let headerow=document.createElement("tr");
+            let cell;
+
+            
+
+            for(let i=0;i<x.length;i++)
+            {
+                cell=document.createElement("th");
+                cell.textContent=x[i];
+                headerow.append(cell);
+            }
+            table.append(headerow);
+
+            arr.forEach((t)=>{
+                let bodyrows=document.createElement("tr");
+                for(let k in t)
+                {
+                    cell=document.createElement("td");
+                    cell.textContent=t[k];
+                    bodyrows.append(cell);
+                }
+                table.append(bodyrows);
+            });
+
+            document.getElementById("table").innerHTML=""; // clear old
+            document.getElementById("table").append(table);
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+ });
+</script>
+</html>
