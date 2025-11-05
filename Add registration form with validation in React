@@ -1,0 +1,67 @@
+import { useState } from "react";
+
+// Validate name: only letters
+function ValidateName(name) {
+  const pattern = /^[A-Za-z]+$/;
+  return pattern.test(name);
+}
+
+// Validate email format
+function ValidateEmail(email) {
+  const pattern = /^\S+@\S+\.\S+$/;
+  return pattern.test(email);
+}
+
+function Registration() {
+  const [fname, setFname] = useState("guest");
+  const [lname, setLname] = useState("last");
+  const [email, setEmail] = useState("");
+
+  function handleSubmit() {
+    if (!ValidateName(fname) || !ValidateName(lname)) {
+      alert("Invalid name. Please use only letters.");
+    } else if (!ValidateEmail(email)) {
+      alert("Invalid email format.");
+    } else {
+      alert("Valid details entered: " + fname + " " + lname + " " + email);
+    }
+  }
+
+  return (
+    <>
+      <label>Enter first name:</label>
+      <input
+        type="text"
+        value={fname}
+        onChange={(e) => setFname(e.target.value)}
+      />
+      <br />
+
+      <label>Enter last name:</label>
+      <input
+        type="text"
+        value={lname}
+        onChange={(e) => setLname(e.target.value)}
+      />
+      <br />
+
+      <label>Enter email:</label>
+      <input
+        type="text"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <br />
+
+      <button onClick={handleSubmit}>Submit</button>
+
+      <p>
+        Hello {fname} {lname}
+        <br />
+        Email: {email}
+      </p>
+    </>
+  );
+}
+
+export default Registration;
